@@ -1,12 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { combineReducers, createStore} from 'redux';
+import { Provider } from 'react-redux';
 
-import { Primeiro, Segundo } from "./component";
+import Field from './field'
+
+const reducers = combineReducers({
+  field: () => ({value: 'REDUX MEERMÃO'})
+});
+
 
 ReactDOM.render(
-  <div>
-    <Primeiro />
-    <Segundo />
-  </div>,
-  document.getElementById("app")
-);
+  <Provider store={createStore(reducers)}> 
+    <Field initialValue='Teste' />
+  </Provider>
+, document.getElementById('app'));
