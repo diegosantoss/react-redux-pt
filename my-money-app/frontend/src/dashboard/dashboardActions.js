@@ -6,7 +6,7 @@ export function getSummary(){
   return dispatch => {
     const request = axios.get(`${BASE_URL}/billingCycles/summary`);
     return request.then(resp => dispatch(
-      {type: 'BILLING_SUMMARY_FETCH', payload: resp.data}
+      { type: 'BILLING_SUMMARY_FETCH', payload: resp.data }
       )
     );
   }
