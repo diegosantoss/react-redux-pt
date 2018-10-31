@@ -4,7 +4,7 @@ import { reset as resetForm, initialize } from 'redux-form';
 import { showTabs, selectTab } from '../common/tab/tabActions';
 
 const BASE_URL = 'http://localhost:3003/api';
-const INITIAL_VALUES = {};
+const INITIAL_VALUES = { credits: [{}]};
 
 export function getList(){
   return dispatch => {
@@ -36,6 +36,20 @@ function submit(values, method){
       e.response.data.errors.forEach(error => toastr.error('Erro', error))
     })
   }
+}
+
+export function remove(values){
+  return submit(values, 'delete');
+}
+
+export function showDelete(billingCycle){
+  return dispatch => (
+    dispatch([
+      showTabs('tabDelete'),
+      selectTab('tabDelete'),
+      initialize('billingCycleForm', billingCycle)
+    ])
+  )
 }
 
 export function showUpdate(billingCycle){
